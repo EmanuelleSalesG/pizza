@@ -65,5 +65,28 @@ function closeWindow(button){
 
 docAll('.pizzaInfo--cancelMobileButton, .pizzaInfo--cancelButton').forEach((item)=>{
     item.addEventListener('click', closeWindow);
-})
+});
+
+doc('.pizzaInfo--qtmenos').addEventListener('click', ()=>{
+    
+    if(modalQt > 1){
+        modalQt--;
+        doc('.pizzaInfo--qt').innerHTML = modalQt;
+    }
+});
+
+doc('.pizzaInfo--qtmais').addEventListener('click', ()=>{
+    modalQt++;
+    doc('.pizzaInfo--qt').innerHTML = modalQt;
+});
+
+//CREATE A SELECTION SIZE BUTTON
+docAll('.pizzaInfo--size').forEach((size, index)=>{
+    size.addEventListener('click', (e)=>{
+        doc('.pizzaInfo--size.selected').classList.remove('selected');
+        size.classList.add('selected');
+    });
+});
+
+
 
