@@ -2,6 +2,7 @@ const doc = (element) => document.querySelector(element);
 const docAll = (element) => document.querySelectorAll(element);
 let modalQt = 1;
 
+//LISTING PIZZAS
 pizzaJson.map((item, index)=>{
     
     let pizzaItem = doc('.models .pizza-item').cloneNode(true);
@@ -52,4 +53,17 @@ pizzaJson.map((item, index)=>{
     doc('.pizza-area').appendChild(pizzaItem);
 
 });
+
+// WINDOW (POP-UP) EVENTS
+function closeWindow(button){
+    doc('.pizzaWindowArea').style.opacity = 0;
+    
+    setTimeout(()=>{
+        doc('.pizzaWindowArea').style.display = 'none';
+    }, 500);
+}
+
+docAll('.pizzaInfo--cancelMobileButton, .pizzaInfo--cancelButton').forEach((item)=>{
+    item.addEventListener('click', closeWindow);
+})
 
