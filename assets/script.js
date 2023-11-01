@@ -92,14 +92,25 @@ docAll('.pizzaInfo--size').forEach((size, index)=>{
 
 //CART
 doc('.pizzaInfo--addButton').addEventListener('click', ()=>{
+    
 
     //ADD TO CART
     let size = parseInt(doc('.pizzaInfo--size.selected').getAttribute('data-key'));
-    cart.push({
-        id: pizzaJson[modalkey].id,
-        size,
-        qt: modalQt
-    });
+    
+    let identifier = pizzaJson[modalkey].id + '@' + size;
+
+    let key = cart.findIndex(item=> item.identifier === identifier);
+    
+    if(key > -1){
+        cart[key].qt += modalQt;
+    }else{
+        cart.push({
+            identifier,
+            id: pizzaJson[modalkey].id,
+            size,
+            qt: modalQt
+        });
+    }
 
     closeWindow();
 
